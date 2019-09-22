@@ -1,4 +1,4 @@
-from .models import ALBUMS
+# from .models import ALBUMS
 from django.http import HttpResponse
 
 def index(request):
