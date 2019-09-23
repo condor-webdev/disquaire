@@ -8,11 +8,14 @@ def index(request):
     # then format the request.
     # note that we don't use album['name'] anymore but album.name
     # because it's now an attribute.
-    formatted_albums = ["<li>{}</li>".format(album.title) for album in albums]
-    message = """<ul>{}</ul>""".format("\n".join(formatted_albums))
+    #formatted_albums = ["<li>{}</li>".format(album.title) for album in albums]
+    #message = """<ul>{}</ul>""".format("\n".join(formatted_albums))
     #return HttpResponse(message)
     template = loader.get_template('store/index.html')
-    return HttpResponse(template.render(request=request))    
+    context = {
+        'albums': albums
+    }
+    return HttpResponse(template.render(context, request=request))
 
 def listing(request):
     albums = Album.objects.filter(available=True)
